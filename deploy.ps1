@@ -1,3 +1,4 @@
+#Requires -Modules Az
 Connect-AzAccount
 
 $resourceGroup = Read-Host "Please supply a name for the Resource Group:  "
@@ -6,7 +7,6 @@ $storac = "sbsastoragedemo$genServ"
 
 Write-Host "Generating template parameters..." -ForegroundColor Green
 $TemplateParameters = @{
-   	'resourceGroupName' = $resourceGroup
 	'storageAccountName' = $storac
  }
 

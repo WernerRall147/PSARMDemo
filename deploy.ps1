@@ -1,0 +1,2 @@
+$resourceGroup = Read-Host "Please supply a name for the Resource Group:"
+New-AzResourceGroupDeployment -ResourceGroupName $resourceGroup -TemplateFile ".\azuredeploy.json" -templateparameterobject $TemplateParameters -ErrorAction Stop

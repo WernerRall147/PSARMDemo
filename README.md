@@ -3,13 +3,10 @@ Showcase how to use PowerShell to call a seperate ARM Template and deploy into A
 
 ---
 description: This template teaches how to create a Standard Storage Account
-page_type: sample
 products:
 - azure
 - azure-resource-manager
-urlFragment: storage-account-create
 languages:
-- bicep
 - json
 ---
 # Create a Standard Storage Account

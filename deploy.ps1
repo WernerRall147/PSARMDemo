@@ -1,4 +1,3 @@
-#Requires -Modules Az
 $subscription = Read-Host "Please supply the name of the Subscription:  "
 $resourceGroup = Read-Host "Please supply a name for the Resource Group:  "
 $genServ = Read-Host "Please Enter a Random Number between between 10000 and 20000:  "

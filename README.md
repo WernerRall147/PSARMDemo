@@ -29,6 +29,11 @@ If you're new to the template development, see:
 - [Azure Resource Manager documentation](https://docs.microsoft.com/azure/azure-resource-manager/)
 
 ---
+## Prerequisites
+
+- Git installed [accept the defaults] (Downloadable from here https://git-scm.com/download/win)
+- Az PowerShell Modules Installed (Find install instructions here https://learn.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-9.3.0)
+---
 ## Step 1
 
 Clone this repo to your local machine. You can do this by opening PowerShell and running Git Clone [Make sure you have Git installed]

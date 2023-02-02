@@ -1,8 +1,10 @@
 #Requires -Modules Az
-Connect-AzAccount
-
+$subscription = Read-Host "Please supply a name for the Resource Group:  "
 $resourceGroup = Read-Host "Please supply a name for the Resource Group:  "
 $genServ = Read-Host "Please Enter a Random Number between between 10000 and 20000:  "
+
+Connect-AzAccount -Subscription $subscription
+
 $storac = "sbsastoragedemo$genServ"
 
 Write-Host "Generating template parameters..." -ForegroundColor Green

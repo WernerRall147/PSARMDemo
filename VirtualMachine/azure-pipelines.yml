@@ -1,0 +1,30 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: 
+      branches:
+        include: 
+        - main
+        
+stages :        
+  - stage: arm_template_deploy
+    jobs:
+      - job: arm_template_deploy
+        steps:
+              - checkout: self
+
+              - task: AzureResourceManagerTemplateDeployment@3
+                inputs:
+                  deploymentScope: 'Resource Group'
+                  azureResourceManagerConnection: '#TODO'
+                  subscriptionId: '#TODO'
+                  action: 'Create Or Update Resource Group'
+                  resourceGroupName: '#TODO'
+                  location: '#TODO'
+                  templateLocation: 'Linked artifact'
+                  csmFile: '$(System.DefaultWorkingDirectory)/azuredeploy.json'
+                  csmParametersFile: '$(System.DefaultWorkingDirectory)/azuredeploy.parameters.json'
+                  deploymentMode: 'Incremental'
+

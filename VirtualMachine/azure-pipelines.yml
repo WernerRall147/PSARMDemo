@@ -3,11 +3,29 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+parameters:
+  - name: param1
+    displayName: vmName
+    type: string
+    default: $(param1)
+  - name: param2
+    displayName: adminUsername
+    type: string
+    default: $(param2)
+  - name: param3
+    displayName: adminPassword
+    type: string
+    default: $(param3)
+  - name: param4
+    displayName: location
+    type: string
+    default: $(param4)
+
 trigger: 
       branches:
         include: 
-        - main
-        
+        - none
+
 stages :        
   - stage: arm_template_deploy
     jobs:
@@ -26,5 +44,6 @@ stages :
                   templateLocation: 'Linked artifact'
                   csmFile: '$(System.DefaultWorkingDirectory)/azuredeploy.json'
                   csmParametersFile: '$(System.DefaultWorkingDirectory)/azuredeploy.parameters.json'
-                  deploymentMode: 'Incremental'
+                  overrideParameters: -vmName ${{parameters.param1}} -adminUsername ${{parameters.param2}} -adminPassword ${{parameters.param3}} -location ${{parameters.param4}} 
+                  deploymentMode: Incremental
 

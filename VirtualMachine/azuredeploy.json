@@ -158,17 +158,6 @@
   },
   "resources": [
     {
-      "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2022-05-01",
-      "name": "[variables('storageAccountName')]",
-      "location": "[parameters('location')]",
-      "tags": "[parameters('resourceTags')]",
-      "sku": {
-        "name": "Standard_LRS"
-      },
-      "kind": "Storage"
-    },
-    {
       "type": "Microsoft.Network/publicIPAddresses",
       "apiVersion": "2022-05-01",
       "name": "[parameters('publicIpName')]",
@@ -308,9 +297,7 @@
         },
         "diagnosticsProfile": {
           "bootDiagnostics": {
-            "enabled": true,
-            "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2022-05-01').primaryEndpoints.blob]"
-          }
+            "enabled": true          }
         },
         "securityProfile": "[if(equals(parameters('securityType'), 'TrustedLaunch'), variables('securityProfileJson'), null())]"
       },

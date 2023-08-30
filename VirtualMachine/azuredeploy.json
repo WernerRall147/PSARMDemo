@@ -109,6 +109,18 @@
       "defaultValue": "simple-vm",
       "metadata": {
         "description": "Name of the virtual machine."
+        }
+      },
+    "resourceTags": {
+      "type": "object",
+      "defaultValue": {
+        "Applications": "Dev",
+        "System": "Dev",
+        "Site": "Dev",
+        "Department": "Dev",
+        "Country": "Dev",
+        "Owner": "Dev",
+        "ResourceType": "Dev"
       }
     },
     "securityType": {
@@ -150,6 +162,7 @@
       "apiVersion": "2022-05-01",
       "name": "[variables('storageAccountName')]",
       "location": "[parameters('location')]",
+      "tags": "[parameters('resourceTags')]",
       "sku": {
         "name": "Standard_LRS"
       },
@@ -160,6 +173,7 @@
       "apiVersion": "2022-05-01",
       "name": "[parameters('publicIpName')]",
       "location": "[parameters('location')]",
+      "tags": "[parameters('resourceTags')]",
       "sku": {
         "name": "[parameters('publicIpSku')]"
       },
@@ -175,6 +189,7 @@
       "apiVersion": "2022-05-01",
       "name": "[variables('networkSecurityGroupName')]",
       "location": "[parameters('location')]",
+      "tags": "[parameters('resourceTags')]",
       "properties": {
         "securityRules": [
           {
@@ -198,6 +213,7 @@
       "apiVersion": "2022-05-01",
       "name": "[variables('virtualNetworkName')]",
       "location": "[parameters('location')]",
+      "tags": "[parameters('resourceTags')]",
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
@@ -225,6 +241,7 @@
       "apiVersion": "2022-05-01",
       "name": "[variables('nicName')]",
       "location": "[parameters('location')]",
+      "tags": "[parameters('resourceTags')]",
       "properties": {
         "ipConfigurations": [
           {
@@ -251,6 +268,7 @@
       "apiVersion": "2022-03-01",
       "name": "[parameters('vmName')]",
       "location": "[parameters('location')]",
+      "tags": "[parameters('resourceTags')]",
       "properties": {
         "hardwareProfile": {
           "vmSize": "[parameters('vmSize')]"

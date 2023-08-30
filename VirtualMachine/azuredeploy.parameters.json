@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "vmName": {
-      "value": "simple-vm"
+      "value": "#TODO"
     },
     "adminUsername": {
       "value": "#TODO"
@@ -12,10 +12,22 @@
       "value": "#TODO"
     },
     "vmSize": {
-      "value": "Standard_D2s_v5"
+      "value": "#TODO"
     },
     "location": {
-      "value": "eastus"
+      "value": "#TODO"
+    },
+    "resourceTags": {
+      "value": {
+        "Applications": "Dev",
+        "System": "Dev",
+        "Site": "Dev",
+        "Department": "Dev",
+        "Country": "Dev",
+        "Owner": "Dev",
+        "ResourceType": "Dev",
+        "ResourceName": "Dev"
+      }
     }
   }
 }

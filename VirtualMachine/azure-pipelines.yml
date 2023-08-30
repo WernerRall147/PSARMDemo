@@ -20,12 +20,16 @@ parameters:
     displayName: location
     type: string
     default: $(param4)
+  - name: param8
+    displayName: resourceTags
+    type: string
+    default: $(param8)
 
 trigger: 
       branches:
         include: 
         - none
-
+        
 stages :        
   - stage: arm_template_deploy
     jobs:
@@ -36,14 +40,14 @@ stages :
               - task: AzureResourceManagerTemplateDeployment@3
                 inputs:
                   deploymentScope: 'Resource Group'
-                  azureResourceManagerConnection: '#TODO'
-                  subscriptionId: '#TODO'
+                  azureResourceManagerConnection: 'PowerAppsSPN'
+                  subscriptionId: '903d847b-78e2-4a91-a151-7e2295a32f1d'
                   action: 'Create Or Update Resource Group'
-                  resourceGroupName: '#TODO'
-                  location: '#TODO'
+                  resourceGroupName: 'PowerApps'
+                  location: 'eastus'
                   templateLocation: 'Linked artifact'
                   csmFile: '$(System.DefaultWorkingDirectory)/azuredeploy.json'
                   csmParametersFile: '$(System.DefaultWorkingDirectory)/azuredeploy.parameters.json'
-                  overrideParameters: -vmName ${{parameters.param1}} -adminUsername ${{parameters.param2}} -adminPassword ${{parameters.param3}} -location ${{parameters.param4}} 
+                  overrideParameters: -vmName ${{parameters.param1}} -adminUsername ${{parameters.param2}} -adminPassword ${{parameters.param3}} -location ${{parameters.param4}} -resourceTags ${{parameters.param8}}
                   deploymentMode: Incremental
 

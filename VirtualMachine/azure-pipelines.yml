@@ -20,10 +20,38 @@ parameters:
     displayName: location
     type: string
     default: $(param4)
+  - name: param5
+    displayName: Applications
+    type: string
+    default: $(param5)
+  - name: param12
+    displayName: System
+    type: string
+    default: $(param12)
+  - name: param6
+    displayName: Site
+    type: string
+    default: $(param6)
+  - name: param7
+    displayName: Department
+    type: string
+    default: $(param7)
   - name: param8
-    displayName: resourceTags
+    displayName: Country
     type: string
     default: $(param8)
+  - name: param9
+    displayName: Owner
+    type: string
+    default: $(param9)
+  - name: param10
+    displayName: ResourceType
+    type: string
+    default: $(param10)
+  - name: param11
+    displayName: ResourceName
+    type: string
+    default: $(param11)
 
 trigger: 
       branches:
@@ -40,14 +68,14 @@ stages :
               - task: AzureResourceManagerTemplateDeployment@3
                 inputs:
                   deploymentScope: 'Resource Group'
-                  azureResourceManagerConnection: 'PowerAppsSPN'
-                  subscriptionId: '903d847b-78e2-4a91-a151-7e2295a32f1d'
+                  azureResourceManagerConnection: '#TODO'
+                  subscriptionId: '#TODO'
                   action: 'Create Or Update Resource Group'
-                  resourceGroupName: 'PowerApps'
+                  resourceGroupName: '#TODO'
                   location: 'eastus'
                   templateLocation: 'Linked artifact'
                   csmFile: '$(System.DefaultWorkingDirectory)/azuredeploy.json'
                   csmParametersFile: '$(System.DefaultWorkingDirectory)/azuredeploy.parameters.json'
-                  overrideParameters: -vmName ${{parameters.param1}} -adminUsername ${{parameters.param2}} -adminPassword ${{parameters.param3}} -location ${{parameters.param4}} -resourceTags ${{parameters.param8}}
+                  overrideParameters: -vmName ${{parameters.param1}} -adminUsername ${{parameters.param2}} -adminPassword ${{parameters.param3}} -location ${{parameters.param4}} -Applications ${{parameters.param5}} -System ${{parameters.param5}} -Site ${{parameters.param6}} -Department ${{parameters.param7}} -Country ${{parameters.param8}} -Owner ${{parameters.param9}} -ResourceType ${{parameters.param10}} -ResourceName ${{parameters.param11}}
                   deploymentMode: Incremental
 

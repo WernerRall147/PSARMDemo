@@ -14,20 +14,29 @@
     "vmSize": {
       "value": "#TODO"
     },
-    "location": {
+    "Applications": {
       "value": "#TODO"
     },
-    "resourceTags": {
-      "value": {
-        "Applications": "Dev",
-        "System": "Dev",
-        "Site": "Dev",
-        "Department": "Dev",
-        "Country": "Dev",
-        "Owner": "Dev",
-        "ResourceType": "Dev",
-        "ResourceName": "Dev"
-      }
+    "System": {
+      "value": "#TODO"
+    },
+    "Site": {
+      "value": "#TODO"
+    },
+    "Department": {
+      "value": "#TODO"
+    },
+    "Country": {
+      "value": "#TODO"
+    },
+    "Owner": {
+      "value": "#TODO"
+    },
+    "ResourceType": {
+      "value": "#TODO"
+    },
+    "ResourceName": {
+      "value": "#TODO"
     }
   }
 }

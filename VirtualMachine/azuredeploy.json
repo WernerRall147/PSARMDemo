@@ -177,7 +177,14 @@
       "metadata": {
         "description": "Security Type of the Virtual Machine."
       }
+    }, 
+    "createDataDisks": {
+    "type": "bool",
+    "defaultValue": true,
+    "metadata": {
+      "description": "Specifies whether to create data disks or not."
     }
+  }
   },
   "variables": {
     "nicName": "[concat(parameters('vmName'),'-nic-01')]",
@@ -367,14 +374,7 @@
             "managedDisk": {
               "storageAccountType": "StandardSSD_LRS"
             }
-          },
-          "dataDisks": [
-            {
-              "diskSizeGB": 1023,
-              "lun": 0,
-              "createOption": "Empty"
-            }
-          ]
+          }
         },
         "networkProfile": {
           "networkInterfaces": [
@@ -392,6 +392,24 @@
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
       ]
+    },
+    {
+    "type": "Microsoft.Compute/disks",
+    "name": "[concat(parameters('vmName'),'myDataDisk', copyIndex())]",
+    "apiVersion": "2023-01-02",
+    "copy": {
+      "name": "dataDiskLoop",
+      "count": "[if(parameters('createDataDisks'), 1, 0)]"
+    },
+    "properties": {
+      "diskSizeGB": 128,
+      "creationData": {
+        "createOption": "Empty"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
+      ]
+    }
     },
     {
       "condition": "[and(equals(parameters('securityType'), 'TrustedLaunch'), and(equals(variables('securityProfileJson').uefiSettings.secureBootEnabled, true()), equals(variables('securityProfileJson').uefiSettings.vTpmEnabled, true())))]",

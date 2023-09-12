@@ -180,7 +180,7 @@
     }
   },
   "variables": {
-    "nicName": "myVMNic",
+    "nicName": "[concat(parameters('vmName'),'-nic-01')]",
     "addressPrefix": "10.0.0.0/16",
     "subnetName": "Subnet",
     "subnetPrefix": "10.0.0.0/24",

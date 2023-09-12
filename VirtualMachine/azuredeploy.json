@@ -90,6 +90,24 @@
         "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version."
       }
     },
+    "diskSize": {
+      "type": "string",
+      "defaultValue": "128",
+      "allowedValues": [
+        128,
+        256,
+        512,
+        1023,
+        2047,
+        4095,
+        8191,
+        16383,
+        32767
+      ],
+      "metadata": {
+        "description": "The Disk size for the data disks"
+      }
+    },
     "vmSize": {
       "type": "string",
       "defaultValue": "Standard_D2s_v5",
@@ -394,22 +412,23 @@
       ]
     },
     {
-    "type": "Microsoft.Compute/disks",
-    "name": "[concat(parameters('vmName'),'myDataDisk', copyIndex())]",
-    "apiVersion": "2023-01-02",
-    "copy": {
-      "name": "dataDiskLoop",
-      "count": "[if(parameters('createDataDisks'), 1, 0)]"
-    },
-    "properties": {
-      "diskSizeGB": 128,
-      "creationData": {
-        "createOption": "Empty"
+      "type": "Microsoft.Compute/disks",
+      "name": "[concat(parameters('vmName'),'myDataDisk', copyIndex())]",
+      "location": "[parameters('location')]",
+      "apiVersion": "2023-01-02",
+      "copy": {
+        "name": "dataDiskLoop",
+        "count": "[if(parameters('createDataDisks'), 1, 0)]"
       },
-      "dependsOn": [
-        "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
-      ]
-    }
+      "properties": {
+        "diskSizeGB": "[parameters('diskSize')]",
+        "creationData": {
+          "createOption": "Empty"
+        },
+        "dependsOn": [
+          "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
+        ]
+      }
     },
     {
       "condition": "[and(equals(parameters('securityType'), 'TrustedLaunch'), and(equals(variables('securityProfileJson').uefiSettings.secureBootEnabled, true()), equals(variables('securityProfileJson').uefiSettings.vTpmEnabled, true())))]",

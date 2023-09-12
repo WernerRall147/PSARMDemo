@@ -91,7 +91,7 @@
       }
     },
     "diskSize": {
-      "type": "string",
+      "type": "int",
       "defaultValue": "128",
       "allowedValues": [
         128,

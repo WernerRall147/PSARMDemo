@@ -52,6 +52,10 @@ parameters:
     displayName: ResourceName
     type: string
     default: $(param11)
+  - name: param12
+    displayName: numberOfDataDisks
+    type: string
+    default: $(param12)   
 
 trigger: 
       branches:
@@ -76,6 +80,18 @@ stages :
                   templateLocation: 'Linked artifact'
                   csmFile: '$(System.DefaultWorkingDirectory)/azuredeploy.json'
                   csmParametersFile: '$(System.DefaultWorkingDirectory)/azuredeploy.parameters.json'
-                  overrideParameters: -vmName ${{parameters.param1}} -adminUsername ${{parameters.param2}} -adminPassword ${{parameters.param3}} -location ${{parameters.param4}} -Applications ${{parameters.param5}} -System ${{parameters.param5}} -Site ${{parameters.param6}} -Department ${{parameters.param7}} -Country ${{parameters.param8}} -Owner ${{parameters.param9}} -ResourceType ${{parameters.param10}} -ResourceName ${{parameters.param11}}
                   deploymentMode: Incremental
+                  overrideParameters: "-vmName ${{parameters.param1}} 
+                  -adminUsername ${{parameters.param2}} 
+                  -adminPassword ${{parameters.param3}} 
+                  -location ${{parameters.param4}} 
+                  -Applications ${{parameters.param5}} 
+                  -System ${{parameters.param5}} 
+                  -Site ${{parameters.param6}} 
+                  -Department ${{parameters.param7}} 
+                  -Country ${{parameters.param8}} 
+                  -Owner ${{parameters.param9}} 
+                  -ResourceType ${{parameters.param10}} 
+                  -ResourceName ${{parameters.param11}} 
+                  -numberOfDataDisks ${{parameters.param12}}"
 

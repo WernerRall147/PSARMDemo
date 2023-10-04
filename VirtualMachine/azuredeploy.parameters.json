@@ -17,6 +17,9 @@
     "createDataDisks": {
         "value": "#TODO"
     },
+    "numberOfDataDisks": {
+        "value": "#TODO"
+    },
     "Applications": {
       "value": "#TODO"
     },

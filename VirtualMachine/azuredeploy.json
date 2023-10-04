@@ -202,10 +202,18 @@
     "metadata": {
       "description": "Specifies whether to create data disks or not."
     }
+  },
+    "numberOfDataDisks": {
+    "type": "int",
+    "defaultValue": 0,
+    "metadata": {
+      "description": "Specifies how many Data Disks to add."
+    }
   }
   },
   "variables": {
     "nicName": "[concat(parameters('vmName'),'-nic-01')]",
+    "dataDiskCount": "[if(parameters('createDataDisks'), parameters('numberOfDataDisks'), 0)]",
     "addressPrefix": "10.0.0.0/16",
     "subnetName": "Subnet",
     "subnetPrefix": "10.0.0.0/24",
@@ -418,7 +426,7 @@
       "apiVersion": "2023-01-02",
       "copy": {
         "name": "dataDiskLoop",
-        "count": "[if(parameters('createDataDisks'), 1, 0)]"
+        "count": "[if(parameters('createDataDisks'), variables('dataDiskCount'), 0)]"
       },
       "properties": {
         "diskSizeGB": "[parameters('diskSize')]",
